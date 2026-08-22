@@ -1,0 +1,35 @@
+{
+  "name": "oral-history-agent",
+  "private": true,
+  "version": "0.2.0",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "test": "node --test test/*.test.js",
+    "preview": "vite preview",
+    "preandroid:sync": "npm run build",
+    "android:sync": "cap sync android",
+    "android:debug": "./scripts/build-android-debug.sh",
+    "preios:sync": "npm run build",
+    "ios:sync": "cap sync ios"
+  },
+  "dependencies": {
+    "@capacitor/android": "8.4.2",
+    "@capacitor/core": "8.4.2",
+    "@capacitor/filesystem": "^8.1.3",
+    "@capacitor/ios": "8.4.2",
+    "@capacitor/share": "^8.0.1",
+    "@earendil-works/pi-agent-core": "0.84.2",
+    "@earendil-works/pi-ai": "0.84.2",
+    "@vitejs/plugin-react": "^5.0.2",
+    "react": "^19.1.1",
+    "react-dom": "^19.1.1",
+    "typebox": "1.3.7",
+    "vite": "^7.1.3"
+  },
+  "devDependencies": {
+    "@capacitor/cli": "8.4.2"
+  }
+}

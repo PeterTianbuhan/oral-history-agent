@@ -1,0 +1,41 @@
+node_modules/
+dist/
+.DS_Store
+.playwright-cli/
+/design/
+
+# Local credentials and environment overrides
+.env
+.env.*
+!.env.example
+*.keystore
+*.jks
+*.p12
+*.mobileprovision
+
+# Generated mobile output and machine-local SDK paths
+android/.gradle/
+android/build/
+android/app/build/
+android/capacitor-cordova-android-plugins/build/
+android/local.properties
+android/app/src/main/assets/public/
+ios/App/DerivedData/
+ios/App/build/
+ios/App/Pods/
+ios/App/App/public/
+*.xcuserstate
+xcuserdata/
+
+# Private memories and distributable binaries never belong in source control
+/memory/
+/recordings/
+/exports/
+/artifacts/
+*.apk
+*.aab
+*.ipa
+
+# Local browser QA intermediates (the rendered PNG is intentionally documented)
+docs/onboarding-browser-check.jpg
+docs/onboarding-browser-check.png

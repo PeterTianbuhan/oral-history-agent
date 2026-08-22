@@ -1,0 +1,157 @@
+[
+  {
+    "type": "function",
+    "function": {
+      "name": "search_memory",
+      "description": "使用一组关键词检索用户当前的时间线、人物卡片、地点卡片、事实和原始转录。命中任意关键词即可返回，并优先排列命中关键词更多的内容。工具不扩写关键词、不推断同义词；结果不足时可以换一组关键词再次调用。返回稳定 ID、类型、标题或时间、命中关键词、命中片段和关联 ID。结果只用于定位，修改前应再读取目标。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "keywords": {
+            "type": "array",
+            "items": { "type": "string", "minLength": 1 },
+            "minItems": 1,
+            "maxItems": 12,
+            "uniqueItems": true,
+            "description": "由 Agent 选择的关键词，可以是人名、地点、事件词、时间说法或原话片段。"
+          },
+          "scopes": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": ["timeline", "people", "places", "facts", "evidence"]
+            },
+            "uniqueItems": true,
+            "description": "需要搜索的范围；省略时搜索全部记忆。"
+          },
+          "limit": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 20,
+            "default": 8
+          }
+        },
+        "required": ["keywords"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "read_memory",
+      "description": "按稳定 ID 读取当前记忆的准确内容及其关联项。用于确认搜索命中的时间线段落、卡片、事实或原始转录。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "ids": {
+            "type": "array",
+            "items": { "type": "string" },
+            "minItems": 1,
+            "maxItems": 20,
+            "uniqueItems": true
+          },
+          "include_linked_evidence": {
+            "type": "boolean",
+            "default": false,
+            "description": "是否同时返回这些内容关联的原始转录。"
+          }
+        },
+        "required": ["ids"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "read_timeline_window",
+      "description": "读取某个时间线段落及其前后相邻段落，帮助判断插入、合并、移动和自然语言时间顺序。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "anchor_id": { "type": "string" },
+          "before": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 6,
+            "default": 2
+          },
+          "after": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 6,
+            "default": 2
+          }
+        },
+        "required": ["anchor_id"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "apply_memory_patch",
+      "description": "把一组变更原子地应用到当前时间线、人物、地点或事实。工具负责验证目标 ID 和操作是否合法、保存结果并返回实际变更；卡片只保留修改后的当前内容。",
+      "parameters": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "operations": {
+            "type": "array",
+            "minItems": 1,
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "properties": {
+                "op": {
+                  "type": "string",
+                  "enum": ["add", "update", "remove", "move", "merge", "upsert"]
+                },
+                "target": {
+                  "type": "string",
+                  "enum": ["timeline_block", "person", "place", "fact"]
+                },
+                "target_id": { "type": ["string", "null"] },
+                "after_id": { "type": ["string", "null"] },
+                "merge_from_ids": {
+                  "type": "array",
+                  "items": { "type": "string" },
+                  "uniqueItems": true
+                },
+                "time_label": { "type": ["string", "null"] },
+                "title": { "type": ["string", "null"] },
+                "text": { "type": ["string", "null"] },
+                "value": {
+                  "type": ["string", "number", "boolean", "null"]
+                },
+                "evidence_ids": {
+                  "type": "array",
+                  "items": { "type": "string" },
+                  "uniqueItems": true
+                },
+                "reason": { "type": ["string", "null"] }
+              },
+              "required": ["op", "target"]
+            }
+          }
+        },
+        "required": ["operations"]
+      }
+    }
+  },
+  {
+    "type": "function",
+    "function": {
+      "name": "speak_to_narrator",
+      "description": "给用户发一条界面消息。可以回应他、确认已经完成的修改，或者在需要时继续交流；消息正文会原样显示给用户。",
+      "parameters": {
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          }
+        },
+        "required": ["message"]
+      }
+    }
+  }
+]

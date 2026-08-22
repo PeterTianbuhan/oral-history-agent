@@ -1,0 +1,9 @@
+{
+  "appId": "org.openmemory.mylife.community",
+  "appName": "My Life",
+  "webDir": "dist",
+  "backgroundColor": "#f7f3ec",
+  "server": {
+    "androidScheme": "https"
+  }
+}
