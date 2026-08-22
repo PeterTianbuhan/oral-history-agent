@@ -124,11 +124,11 @@ final class RealtimeRecorderPlugin: CAPPlugin, CAPBridgedPlugin {
     private var speechContext: SpeechContext?
     private var speechHasAudio = false
 
-    @objc func checkPermissions(_ call: CAPPluginCall) {
+    @objc override func checkPermissions(_ call: CAPPluginCall) {
         call.resolve(["recordAudio": microphonePermissionName()])
     }
 
-    @objc func requestPermissions(_ call: CAPPluginCall) {
+    @objc override func requestPermissions(_ call: CAPPluginCall) {
         if AVAudioSession.sharedInstance().recordPermission == .granted {
             call.resolve(["recordAudio": "granted"])
             return
