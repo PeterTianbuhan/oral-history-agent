@@ -37,7 +37,7 @@ const COPY = {
       phoneOnly: '网页上可以先用文字记录；语音录制请使用 Android 或 iPhone 客户端。',
     },
     settings: {
-      start: '开始', title: '连接你的记忆助手', subtitle: 'API Key 只保存在这台设备。\n不经过我们的服务器。',
+      start: '开始', title: '连接你的记忆助手', subtitle: 'API Key 只保存在这台设备。\n应用直接连接你选择的 AI 服务。',
       pageTitle: '设置', agentSection: '记忆助手', service: 'AI 服务', recommended: '推荐',
       apiKey: 'API Key', apiKeyPlaceholder: '粘贴你的 Key', showKey: '显示 Key', hideKey: '隐藏 Key',
       model: '模型', modelHint: '可以填写该服务支持的任意模型 ID。', endpoint: '接口地址',
@@ -89,7 +89,7 @@ const COPY = {
       phoneOnly: '網頁上可以先用文字記錄；語音錄製請使用 Android 或 iPhone 客戶端。',
     },
     settings: {
-      start: '開始', title: '連接你的記憶助手', subtitle: 'API Key 只保存在這台裝置。\n不經過我們的伺服器。',
+      start: '開始', title: '連接你的記憶助手', subtitle: 'API Key 只保存在這台裝置。\n應用程式直接連接你選擇的 AI 服務。',
       pageTitle: '設定', agentSection: '記憶助手', service: 'AI 服務', recommended: '推薦',
       apiKey: 'API Key', apiKeyPlaceholder: '貼上你的 Key', showKey: '顯示 Key', hideKey: '隱藏 Key',
       model: '模型', modelHint: '可以填寫該服務支援的任意模型 ID。', endpoint: '介面位址',
@@ -141,7 +141,7 @@ const COPY = {
       phoneOnly: 'You can write in the web app; voice recording is available in the Android and iPhone clients.',
     },
     settings: {
-      start: 'Start', title: 'Connect your memory assistant', subtitle: 'Your API key stays on this device.\nIt never passes through our server.',
+      start: 'Start', title: 'Connect your memory assistant', subtitle: 'Your API key stays on this device.\nThe app connects directly to your chosen AI service.',
       pageTitle: 'Settings', agentSection: 'Memory assistant', service: 'AI service', recommended: 'Recommended',
       apiKey: 'API key', apiKeyPlaceholder: 'Paste your key', showKey: 'Show key', hideKey: 'Hide key',
       model: 'Model', modelHint: 'Enter any model ID supported by this service.', endpoint: 'API endpoint',
